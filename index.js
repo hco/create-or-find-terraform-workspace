@@ -7,10 +7,10 @@ try {
   const token = core.getInput("terraformToken");
   const terraformHost = core.getInput("terraformHost");
   findOrCreateWorkspace({
-    workspaceName: "nodejs-test2",
-    organizationName: "Suora",
-    token:
-      "t8cZ4kzpZHVrAg.atlasv1.UeKwzy2Szft7Fs2VVyzffyz2ovGmeSJzabPBCAOwxslatPFRDxIo0Qqum8KejwVPxDc",
+    workspaceName,
+    organizationName,
+    token,
+    terraformHost
   })
     .then((workspaceId) => {
       core.setOutput("workSpaceId", workspaceId);
