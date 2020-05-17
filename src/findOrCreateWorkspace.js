@@ -26,7 +26,7 @@ const findOrCreateWorkspace = async ({
   });
 
   try {
-    // create new workspace
+    console.log("Trying to create workspace..");
     const response = await client.post("/workspaces", {
       data: {
         attributes: {
@@ -35,9 +35,12 @@ const findOrCreateWorkspace = async ({
         type: "workspaces",
       },
     });
-    return response.data.data.id;
+    let workspaceId = response.data.data.id;
+    console.log(`Found it, id: ${workspaceId}`);
+    return workspaceId;
   } catch (error) {
     if (error.response.status === 422) {
+      console.log("Already exists, now searching...");
       // 422 means: the workspace already exists, let's try & find it
       return findWorkspaceByName(client, workspaceName);
     }
@@ -63,7 +66,11 @@ const findWorkspaceByName = async (client, workspaceName) => {
  * @returns {Promise<string>}
  */
 const findWorkspaceByNameOnPage = async (client, workspaceName, pageNumber) => {
-  const response = await client.get(encodeURI(`/workspaces?page[size]=1000&page[number]=${pageNumber}`));
+  console.log(`looking on page ${pageNumber}`);
+  const response = await client.get(
+    encodeURI(`/workspaces?page[size]=100&page[number]=${pageNumber}`)
+  );
+
   const matchingWorkspaces = response.data.data.filter(
     (workspace) => workspace.attributes.name === workspaceName
   );
@@ -72,8 +79,12 @@ const findWorkspaceByNameOnPage = async (client, workspaceName, pageNumber) => {
     return matchingWorkspaces[0].id;
   }
 
-  if (response.data.meta.pagination['next-page']) {
-    return findWorkspaceByNameOnPage(client, workspaceName, response.data.meta.pagination['next-page']);
+  if (response.data.meta.pagination["next-page"]) {
+    return findWorkspaceByNameOnPage(
+      client,
+      workspaceName,
+      response.data.meta.pagination["next-page"]
+    );
   }
 
   throw new Error(`workspace with name ${workspaceName} could not be found!`);
