@@ -2,7 +2,7 @@ const core = require("@actions/core");
 const { findOrCreateWorkspace } = require("./src/findOrCreateWorkspace");
 
 try {
-  const workSpaceName = core.getInput("workSpaceName");
+  const workspaceName = core.getInput("workSpaceName");
   const organizationName = core.getInput("organizationName");
   const token = core.getInput("terraformToken");
   const terraformHost = core.getInput("terraformHost");
@@ -10,7 +10,7 @@ try {
     workspaceName,
     organizationName,
     token,
-    terraformHost
+    terraformHost,
   })
     .then((workspaceId) => {
       core.setOutput("workSpaceId", workspaceId);
