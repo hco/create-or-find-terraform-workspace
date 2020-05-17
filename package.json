@@ -13,6 +13,7 @@
     "axios": "^0.19.2"
   },
   "devDependencies": {
-    "prettier": "^2.0.5"
+    "prettier": "^2.0.5",
+    "standard-version": "^8.0.0"
   }
 }
