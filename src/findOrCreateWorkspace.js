@@ -36,7 +36,7 @@ const findOrCreateWorkspace = async ({
       },
     });
     let workspaceId = response.data.data.id;
-    console.log(`Found it, id: ${workspaceId}`);
+    console.log(`Created it, id: ${workspaceId}`);
     return workspaceId;
   } catch (error) {
     if (error.response.status === 422) {
@@ -76,6 +76,7 @@ const findWorkspaceByNameOnPage = async (client, workspaceName, pageNumber) => {
   );
 
   if (matchingWorkspaces.length > 0) {
+    console.log(`Found it, id: ${matchingWorkspaces[0].id}`);
     return matchingWorkspaces[0].id;
   }
 
