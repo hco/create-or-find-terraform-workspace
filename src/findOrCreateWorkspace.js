@@ -63,7 +63,7 @@ const findWorkspaceByName = async (client, workspaceName) => {
  * @returns {Promise<string>}
  */
 const findWorkspaceByNameOnPage = async (client, workspaceName, pageNumber) => {
-  const response = await client.get(`/workspaces?page[number]=${pageNumber}`);
+  const response = await client.get(encodeURI(`/workspaces?page[size]=1000&page[number]=${pageNumber}`));
   const matchingWorkspaces = response.data.data.filter(
     (workspace) => workspace.attributes.name === workspaceName
   );
@@ -72,8 +72,8 @@ const findWorkspaceByNameOnPage = async (client, workspaceName, pageNumber) => {
     return matchingWorkspaces[0].id;
   }
 
-  if (links.next) {
-    return findWorkspaceByNameOnPage(client, workspaceName, pageNumber + 1);
+  if (response.data.meta.pagination['next-page']) {
+    return findWorkspaceByNameOnPage(client, workspaceName, response.data.meta.pagination['next-page']);
   }
 
   throw new Error(`workspace with name ${workspaceName} could not be found!`);
