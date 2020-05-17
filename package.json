@@ -1,6 +1,6 @@
 {
   "name": "create-or-find-terraform-workspace",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Create a terraform workspace if it does not exist. Otherwise, find the ID.",
   "main": "index.js",
   "author": "Hans-Christian Otto <c.otto@suora.com>",
