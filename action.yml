@@ -12,7 +12,8 @@ inputs:
     required: true
   terraformHost:
     description: 'Terraform Host Name'
-    required: true
+    required: false
+    default: 'app.terraform.io'
 outputs:
   workSpaceId: 
     description: 'Terraform WorkspaceId'
