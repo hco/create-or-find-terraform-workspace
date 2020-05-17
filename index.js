@@ -13,7 +13,7 @@ try {
       "t8cZ4kzpZHVrAg.atlasv1.UeKwzy2Szft7Fs2VVyzffyz2ovGmeSJzabPBCAOwxslatPFRDxIo0Qqum8KejwVPxDc",
   })
     .then((workspaceId) => {
-      core.setOutput("workSpaceId", response.data.data.id);
+      core.setOutput("workSpaceId", workspaceId);
     })
     .catch((error) => {
       console.error("error:" + JSON.stringify(error));
