@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.4](https://github.com/hco/create-or-find-terraform-workspace/compare/v0.1.3...v0.1.4) (2020-05-17)
+
+
+### Bug Fixes
+
+* Adjusted pageSize to 100 (terraform cloud limit) ([1a61b8a](https://github.com/hco/create-or-find-terraform-workspace/commit/1a61b8af52fd6154d9b96c137f778cd80caad837))
+
 ### [0.1.3](https://github.com/hco/create-or-find-terraform-workspace/compare/v0.1.2...v0.1.3) (2020-05-17)
 
 
