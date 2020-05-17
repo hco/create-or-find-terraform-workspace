@@ -1,0 +1,25 @@
+name: 'Create & Find Terraform Workspace'
+description: 'Create a terraform workspace if it does not exist. Otherwise, find the ID.'
+inputs:
+  workspaceName:
+    description: 'Terraform workspace name'
+    required: true
+  organizationName:
+    description: 'Terraform organization Name'
+    required: true
+  terraformToken:
+    description: 'Terraform Token'
+    required: true
+  terraformHost:
+    description: 'Terraform Host Name'
+    required: true
+outputs:
+  workSpaceId: 
+    description: 'Terraform WorkspaceId'
+runs:
+  using: 'node12'
+  main: 'index.js'
+
+branding:
+  icon: 'play'  
+  color: 'green'
